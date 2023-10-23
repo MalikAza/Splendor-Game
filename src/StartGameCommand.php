@@ -2,6 +2,7 @@
 
 namespace SplendorGame;
 
+use SplendorGame\exceptions\BadNumberOfPlayersException;
 use SplendorGame\interfaces\GameRepository;
 
 class StartGameCommand {
@@ -11,20 +12,25 @@ class StartGameCommand {
         $this->gameRepository = $gameRepository;
     }
 
-    public function execute(int $numberOfPlayers) {
-        switch ($numberOfPlayers) {
+    public function execute(string  ...$playersNames) {
+        switch (count($playersNames)) {
             case 2:
                 $numberOfNobles = 3;
-                $red = 4;
+                $green = $blue = $red = $white = $black = 4;
                 break;
             
             case 3:
                 $numberOfNobles = 4;
-                $red = 5;
+                $green = $blue = $red = $white = $black = 5;
                 break;
+
+            default:
+                throw new BadNumberOfPlayersException;
         }
-        $this->gameRepository->save(
-            new Board($numberOfNobles, 5, $red, 4, 4, 4)
-        );
+
+        $board = new Board($numberOfNobles, $green, $blue, $red, $white, $black);
+        $board->setPlayers(...$playersNames);
+
+        $this->gameRepository->save($board);
     }
 }
