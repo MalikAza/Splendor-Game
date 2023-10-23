@@ -1,0 +1,9 @@
+{
+    "name": "aza/splendor-game",
+    "autoload": {
+        "psr-4": {
+            "SplendorGame\\": "src/"
+        }
+    },
+    "require": {}
+}
