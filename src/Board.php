@@ -5,15 +5,43 @@ namespace SplendorGame;
 class Board {
     private array $board;
 
-    public function __construct(array &$board) {
-        $this->board = $board;
-    }
+    const BASE_JOKER_NUMBER = 5;
+    const BASE_CARD_LEVEL_3_NUMBER = 40;
+    const BASE_CARD_LEVEL_2_NUMBER = 30;
+    const BASE_CARD_LEVEL_1_NUMBER = 20;
 
-    public function playerTakeTwoIdenticalToken(string $playerId, string $colorName) {
-        $this->board['players'][$playerId]['tokens'][$colorName] += 2;
-    }
+    private int $numberOfNobles;
+    private int $joker;
+    private int $green;
+    private int $blue;
+    private int $red;
+    private int $white;
+    private int $black;
+    private int $cardLevel3;
+    private int $cardLevel2;
+    private int $cardLevel1;
 
-    public function getUserToken(string $playerId, string $colorName) {
-        return $this->board['players'][$playerId]['tokens'][$colorName];
+    private array $players;
+
+    public function __construct(
+        int $numberOfNobles,
+        int $green,
+        int $blue,
+        int $red,
+        int $white,
+        int $black,
+        array $players
+    ) {
+        $this->numberOfNobles = $numberOfNobles;
+        $this->joker = self::BASE_JOKER_NUMBER;
+        $this->green = $green;
+        $this->blue = $blue;
+        $this->red = $red;
+        $this->white = $white;
+        $this->black = $black;
+        $this->cardLevel3 = self::BASE_CARD_LEVEL_3_NUMBER;
+        $this->cardLevel2 = self::BASE_CARD_LEVEL_2_NUMBER;
+        $this->cardLevel1 = self::BASE_CARD_LEVEL_1_NUMBER;
+        $this->players = $players;
     }
 }
