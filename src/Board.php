@@ -2,6 +2,8 @@
 
 namespace SplendorGame;
 
+use Exception;
+
 class Board {
     private array $board;
 
@@ -43,5 +45,22 @@ class Board {
         $this->cardLevel2 = self::BASE_CARD_LEVEL_2_NUMBER;
         $this->cardLevel1 = self::BASE_CARD_LEVEL_1_NUMBER;
         $this->players = $players;
+    }
+
+    public function playerTakeTwoIdenticalColorTokens(string $playerName, string $tokenColor) {
+        if ($this->$tokenColor < 4) throw new Exception('Action interdite.');
+
+        $this->$tokenColor -= 2;
+        $this->players[$playerName]->addTokens($tokenColor, 2);
+    }
+
+    public function getTokens(string $tokenColor) {
+        return $this->$tokenColor;
+    }
+
+    public function getPlayerTokens(string $playerName, string $tokenColor) {
+        $player = $this->players[$playerName];
+
+        return $player->getTokens($tokenColor);
     }
 }
