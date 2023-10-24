@@ -3,8 +3,6 @@
 namespace SplendorGame;
 
 class Board {
-    private array $board;
-
     const BASE_JOKER_NUMBER = 5;
     const BASE_CARD_LEVEL_3_NUMBER = 40;
     const BASE_CARD_LEVEL_2_NUMBER = 30;
@@ -20,7 +18,6 @@ class Board {
     private int $cardLevel3;
     private int $cardLevel2;
     private int $cardLevel1;
-
     private array $players;
 
     public function __construct(
@@ -30,7 +27,7 @@ class Board {
         int $red,
         int $white,
         int $black,
-        array $players
+        int $nbPlayers
     ) {
         $this->numberOfNobles = $numberOfNobles;
         $this->joker = self::BASE_JOKER_NUMBER;
@@ -42,6 +39,10 @@ class Board {
         $this->cardLevel3 = self::BASE_CARD_LEVEL_3_NUMBER;
         $this->cardLevel2 = self::BASE_CARD_LEVEL_2_NUMBER;
         $this->cardLevel1 = self::BASE_CARD_LEVEL_1_NUMBER;
-        $this->players = $players;
+        $this->players = [];
+        for($i = 0; $i < $nbPlayers; $i ++)
+        {
+            $players[] = (object) ['name' => $i+1];
+        }
     }
 }
