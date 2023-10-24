@@ -9,11 +9,11 @@ class GameStart {
         $this->gameRepository = $gameRepository;
     }
 
-    public function execute(int $nbrPlayers)
+    public function execute(array $players)
     {
         $nbrJetons = 7;
-        $nbrNobles = $nbrPlayers + 1;
-        switch ($nbrPlayers)
+        $nbrNobles = count($players) + 1;
+        switch (count($players))
         {
             case 2:
                 $nbrJetons = 4;
@@ -23,7 +23,7 @@ class GameStart {
                 break;
         }
 
-        $board = new Board($nbrNobles, $nbrJetons, $nbrJetons, $nbrJetons,$nbrJetons,$nbrJetons, $nbrPlayers);
+        $board = new Board($nbrNobles, $nbrJetons, $nbrJetons, $nbrJetons,$nbrJetons,$nbrJetons, $players);
         $this->gameRepository->saveGame($board);
     }
 }

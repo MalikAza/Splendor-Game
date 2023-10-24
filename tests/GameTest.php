@@ -16,13 +16,13 @@ final class GameTest extends TestCase
 
     function testInitBoardForTwoPlayers()
     {
-        $nbrPlayers = 2;
+        $players = ['one', 'two'];
         $gameRepository = new GameRepositoryInMemory();
 
         $command = new GameStart($gameRepository);
-        $command->execute($nbrPlayers);
+        $command->execute($players);
 
-        $expected = new Board(3,4,4,4,4,4, $nbrPlayers);
+        $expected = new Board(3,4,4,4,4,4, $players);
         $actual = $gameRepository->getGame();
 
         $this->assertEquals($actual, $expected);
@@ -30,26 +30,26 @@ final class GameTest extends TestCase
 
     function testInitBoardForThreePlayers()
     {
-        $nbrPlayers = 3;
+        $players = ['one', 'two', 'three'];
         $gameRepository = new GameRepositoryInMemory();
 
         $command = new GameStart($gameRepository);
-        $command->execute($nbrPlayers);
+        $command->execute($players);
 
-        $expected = new Board(4,5,5,5,5,5, $nbrPlayers);
+        $expected = new Board(4,5,5,5,5,5, $players);
         $actual = $gameRepository->getGame();
 
         $this->assertEquals($actual, $expected);
     }
     function testInitBoardForFourPlayers()
     {
-        $nbrPlayers = 4;
+        $players = ['one', 'two', 'three', 'four'];
         $gameRepository = new GameRepositoryInMemory();
 
         $command = new GameStart($gameRepository);
-        $command->execute($nbrPlayers);
+        $command->execute($players);
 
-        $expected = new Board(5,7,7,7,7,7, $nbrPlayers);
+        $expected = new Board(5,7,7,7,7,7, $players);
         $actual = $gameRepository->getGame();
 
         $this->assertEquals($actual, $expected);

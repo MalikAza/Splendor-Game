@@ -29,7 +29,7 @@ class Board {
         int $red,
         int $white,
         int $black,
-        int $nbPlayers
+        array $players
     ) {
         $this->numberOfNobles = $numberOfNobles;
         $this->joker = self::BASE_JOKER_NUMBER;
@@ -41,11 +41,7 @@ class Board {
         $this->cardLevel3 = self::BASE_CARD_LEVEL_3_NUMBER;
         $this->cardLevel2 = self::BASE_CARD_LEVEL_2_NUMBER;
         $this->cardLevel1 = self::BASE_CARD_LEVEL_1_NUMBER;
-        $this->players = [];
-        for($i = 0; $i < $nbPlayers; $i ++)
-        {
-            $players[] = (object) ['name' => $i+1];
-        }
+        $this->players = $players;
     }
 
     public function playerTakeTwoIdenticalColorTokens(string $playerName, string $tokenColor) {
