@@ -19,6 +19,11 @@ class Board {
     public int $black;
     public array $players;
     public array $cards;
+    public array $tokens;
+    public int $cardLevel3;
+    public int $cardLevel2;
+    public int $cardLevel1;
+    public array $colors;
 
     public function __construct(
         int $numberOfNobles,
@@ -39,6 +44,7 @@ class Board {
         $this->white = $white;
         $this->black = $black;
         $this->players = $players;
+
         $this->cards = $cards ?? [
             'hidden' => [
                 'hiddenCardsLv3' => self::BASE_CARD_LEVEL_3_NUMBER - 4,
@@ -58,6 +64,7 @@ class Board {
             $this->cards['visible']['visibleCardsLv1'][] = new Card(1, true);
         }
 
+        $this->colors = ['green', 'red', 'blue', 'white', 'black'];
     }
 
     public function playerTakeTwoIdenticalColorTokens(string $playerName, string $tokenColor) {
