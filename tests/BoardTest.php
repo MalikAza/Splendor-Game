@@ -18,7 +18,8 @@ class BoardTest extends TestCase {
                 'green' => 0,
                 'white' => 0,
                 'black' => 0
-            ]
+            ],
+            'cards' => []
         ]);
         $playerTwo = new Player([
             'name' => 'two',
@@ -28,7 +29,8 @@ class BoardTest extends TestCase {
                 'green' => 0,
                 'white' => 0,
                 'black' => 0
-            ]
+            ],
+            'cards' => []
         ]);
         $players = [
             'one' => $playerOne,

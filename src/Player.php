@@ -3,12 +3,14 @@
 namespace SplendorGame;
 
 class Player {
-    private string $name;
-    private array $tokens;
+    public string $name;
+    public array $tokens;
+    public array $cards;
 
     public function __construct(array $data) {
         $this->name = $data['name'];
         $this->tokens = $data['tokens'];
+        $this->cards = $data['cards'];
     }
 
     public function getName() {

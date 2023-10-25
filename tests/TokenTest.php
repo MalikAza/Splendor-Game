@@ -15,7 +15,8 @@ final class TokenTest extends TestCase {
                 'green' => 0,
                 'white' => 0,
                 'black' => 0
-            ]
+            ],
+            'cards' => []
         ]);
         $playerTwo = new Player([
             'name' => 'two',
@@ -25,7 +26,8 @@ final class TokenTest extends TestCase {
                 'green' => 0,
                 'white' => 0,
                 'black' => 0
-            ]
+            ],
+            'cards' => []
         ]);
         $players = [
             'one' => $playerOne,
@@ -51,7 +53,8 @@ final class TokenTest extends TestCase {
                 'green' => 0,
                 'white' => 0,
                 'black' => 0
-            ]
+            ],
+            'cards' => []
         ]);
         $playerTwo = new Player([
             'name' => 'two',
@@ -61,7 +64,8 @@ final class TokenTest extends TestCase {
                 'green' => 0,
                 'white' => 0,
                 'black' => 0
-            ]
+            ],
+            'cards' => []
         ]);
         $players = [
             'one' => $playerOne,

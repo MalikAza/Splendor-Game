@@ -6,21 +6,19 @@ use Exception;
 
 class Board {
     const BASE_JOKER_NUMBER = 5;
-    const BASE_CARD_LEVEL_3_NUMBER = 40;
+    const BASE_CARD_LEVEL_3_NUMBER = 20;
     const BASE_CARD_LEVEL_2_NUMBER = 30;
-    const BASE_CARD_LEVEL_1_NUMBER = 20;
+    const BASE_CARD_LEVEL_1_NUMBER = 40;
 
-    private int $numberOfNobles;
-    private int $joker;
-    private int $green;
-    private int $blue;
-    private int $red;
-    private int $white;
-    private int $black;
-    private int $cardLevel3;
-    private int $cardLevel2;
-    private int $cardLevel1;
-    private array $players;
+    public int $numberOfNobles;
+    public int $joker;
+    public int $green;
+    public int $blue;
+    public int $red;
+    public int $white;
+    public int $black;
+    public array $players;
+    public array $cards;
 
     public function __construct(
         int $numberOfNobles,
@@ -29,19 +27,37 @@ class Board {
         int $red,
         int $white,
         int $black,
-        array $players
+        array $players,
+        array $cards = null,
+        int $joker = null
     ) {
         $this->numberOfNobles = $numberOfNobles;
-        $this->joker = self::BASE_JOKER_NUMBER;
+        $this->joker = $joker ?? self::BASE_JOKER_NUMBER;
         $this->green = $green;
         $this->blue = $blue;
         $this->red = $red;
         $this->white = $white;
         $this->black = $black;
-        $this->cardLevel3 = self::BASE_CARD_LEVEL_3_NUMBER;
-        $this->cardLevel2 = self::BASE_CARD_LEVEL_2_NUMBER;
-        $this->cardLevel1 = self::BASE_CARD_LEVEL_1_NUMBER;
         $this->players = $players;
+        $this->cards = $cards ?? [
+            'hidden' => [
+                'hiddenCardsLv3' => self::BASE_CARD_LEVEL_3_NUMBER - 4,
+                'hiddenCardsLv2' => self::BASE_CARD_LEVEL_2_NUMBER - 4,
+                'hiddenCardsLv1' => self::BASE_CARD_LEVEL_1_NUMBER - 4
+            ],
+            'visible' => [
+                'visibleCardsLv3' => [],
+                'visibleCardsLv2' => [],
+                'visibleCardsLv1' => []
+            ]
+        ];
+
+        for ($i = 0; $i < 4; $i++) {
+            $this->cards['visible']['visibleCardsLv3'][] = new Card(3, true);
+            $this->cards['visible']['visibleCardsLv2'][] = new Card(2, true);
+            $this->cards['visible']['visibleCardsLv1'][] = new Card(1, true);
+        }
+
     }
 
     public function playerTakeTwoIdenticalColorTokens(string $playerName, string $tokenColor) {

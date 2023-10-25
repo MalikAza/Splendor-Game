@@ -17,7 +17,8 @@ class PlayerTest extends TestCase {
                 'green' => 2,
                 'white' => 3,
                 'black' => 4
-            ]
+            ],
+            'cards' => []
         ]);
     }
 

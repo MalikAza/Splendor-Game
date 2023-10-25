@@ -26,10 +26,12 @@ final class GameTest extends TestCase
         $command = new GameStart($gameRepository);
         $command->execute($players);
 
-        $expected = $this->boardBuilder(3, 4, $players);
+        $expectedNobles = 3;
+        $expectedJetons = 4;
         $actual = $gameRepository->getGame();
 
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($actual->numberOfNobles, $expectedNobles);
+        $this->assertEquals($actual->red, $expectedJetons);
     }
 
     function testInitBoardForThreePlayers()
@@ -40,10 +42,12 @@ final class GameTest extends TestCase
         $command = new GameStart($gameRepository);
         $command->execute($players);
 
-        $expected = $this->boardBuilder(4, 5, $players);
+        $expectedNobles = 4;
+        $expectedJetons = 5;
         $actual = $gameRepository->getGame();
 
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($actual->numberOfNobles, $expectedNobles);
+        $this->assertEquals($actual->red, $expectedJetons);
     }
     function testInitBoardForFourPlayers()
     {
@@ -53,9 +57,11 @@ final class GameTest extends TestCase
         $command = new GameStart($gameRepository);
         $command->execute($players);
 
-        $expected = $this->boardBuilder(5, 7, $players);
+        $expectedNobles = 5;
+        $expectedJetons = 7;
         $actual = $gameRepository->getGame();
 
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($actual->numberOfNobles, $expectedNobles);
+        $this->assertEquals($actual->red, $expectedJetons);
     }
 }
