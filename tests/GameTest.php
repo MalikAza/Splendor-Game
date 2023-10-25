@@ -8,10 +8,14 @@ use SplendorGame\GameStart;
 
 final class GameTest extends TestCase
 {
-    public array $initialBoard;
-
     function setUp(): void
     {
+
+    }
+
+    function boardBuilder($nbNobles, $nbJetons, $players): Board
+    {
+        return new Board($nbNobles, $nbJetons, $nbJetons, $nbJetons, $nbJetons, $nbJetons, $players);
     }
 
     function testInitBoardForTwoPlayers()
@@ -22,7 +26,7 @@ final class GameTest extends TestCase
         $command = new GameStart($gameRepository);
         $command->execute($players);
 
-        $expected = new Board(3,4,4,4,4,4, $players);
+        $expected = $this->boardBuilder(3, 4, $players);
         $actual = $gameRepository->getGame();
 
         $this->assertEquals($actual, $expected);
@@ -36,7 +40,7 @@ final class GameTest extends TestCase
         $command = new GameStart($gameRepository);
         $command->execute($players);
 
-        $expected = new Board(4,5,5,5,5,5, $players);
+        $expected = $this->boardBuilder(4, 5, $players);
         $actual = $gameRepository->getGame();
 
         $this->assertEquals($actual, $expected);
@@ -49,7 +53,7 @@ final class GameTest extends TestCase
         $command = new GameStart($gameRepository);
         $command->execute($players);
 
-        $expected = new Board(5,7,7,7,7,7, $players);
+        $expected = $this->boardBuilder(5, 7, $players);
         $actual = $gameRepository->getGame();
 
         $this->assertEquals($actual, $expected);
